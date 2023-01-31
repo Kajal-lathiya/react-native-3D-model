@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
-import {Text, View, Animated} from 'react-native';
+import { View, Animated} from 'react-native';
 import {HeaderBar, PostDetails, BottomMenu, AudioGuide} from '../../components';
 import commonStyles from '../commonStyles';
-import FastImage from 'react-native-fast-image';
 import ModelView from 'react-native-gl-model-view';
-const AnimatedModelView = Animated.createAnimatedComponent(ModelView);
+import Swiper from 'react-native-swiper';
+import postData from '../../../data/dataArray.json';
 
+const AnimatedModelView = Animated.createAnimatedComponent(ModelView);
 export default class Home extends Component {
   constructor() {
     super();
     this.state = {
       rotateX: new Animated.Value(-90),
       rotateZ: new Animated.Value(0),
-
       fromXY: undefined,
       valueXY: undefined,
       showAudioView: false,
@@ -42,14 +42,14 @@ export default class Home extends Component {
   handleTitle = () => {
     this.setState({showAudioView: !this.state.showAudioView});
   };
-  render() {
-    let {rotateZ, rotateX, fromXY, showAudioView} = this.state;
+
+  renderModel(item) {
+    const {rotateZ, rotateX, fromXY, showAudioView} = this.state;
     return (
-      <View style={commonStyles.appContainer}>
-        <HeaderBar right />
+      <>
         <AnimatedModelView
           model={{
-            uri: 'demon.model',
+            uri: 'demon.obj',
           }}
           texture={{
             uri: 'demon.png',
@@ -71,12 +71,39 @@ export default class Home extends Component {
             commonStyles.mainView,
           ]}>
           <PostDetails
+            item={item}
             extraStyle={showAudioView}
             OnClickTitle={() => this.handleTitle()}
           />
           {showAudioView && <AudioGuide extraStyle={showAudioView} />}
           <BottomMenu />
         </View>
+      </>
+      // <AnimatedModelView
+      //   model={{
+      //     uri: 'demon.model',
+      //   }}
+      //   texture={{
+      //     uri: 'demon.png',
+      //   }}
+      //   tint={{r: 1.0, g: 1.0, b: 1.0, a: 1.0}}
+      //   animate
+      //   scale={0.01}
+      //   translateZ={-2.5}
+      //   rotateX={270}
+      //   rotateZ={Animated.add(this.state.rotateZ, Math.random() * 360)}
+      //   style={styles.model}
+      // />
+    );
+  }
+
+  render() {
+    return (
+      <View style={commonStyles.appContainer}>
+        <HeaderBar right />
+        <Swiper horizontal={false} showsPagination={false} loop={false}>
+          {postData.map(item => this.renderModel(item))}
+        </Swiper>
       </View>
     );
   }

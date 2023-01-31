@@ -14,7 +14,6 @@ const playCircle = require('../assets/icons/playCircle.png');
 const forward = require('../assets/icons/forward.png');
 const backward = require('../assets/icons/backward.png');
 
-
 export default {
   left_arrow,
   menu,

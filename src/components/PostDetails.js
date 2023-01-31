@@ -4,12 +4,12 @@ import FastImage from 'react-native-fast-image';
 import {icons} from '../constants';
 import commonStyles from '../screens/commonStyles';
 
-const PostDetails = ({extraStyle, OnClickTitle}) => {
+const PostDetails = ({extraStyle, OnClickTitle, item}) => {
   return (
     <View
       style={[commonStyles.postMainView, !extraStyle && commonStyles.marginB90]}>
       <Text style={commonStyles.fontSize10W}>
-        #david #michelangelo #italianrenaissance #marble #sculpture
+        {item?.caption}
       </Text>
       <View style={commonStyles.subView}>
         <TouchableOpacity>
@@ -19,13 +19,13 @@ const PostDetails = ({extraStyle, OnClickTitle}) => {
             style={commonStyles.Image30}
           />
           <Text style={[commonStyles.font12W, commonStyles.textCenter]}>
-            22.5k
+          {item?.likes}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={commonStyles.flexCenter} onPress={OnClickTitle}>
-          <Text style={commonStyles.font22W}>Bust of David (1503)</Text>
+          <Text style={commonStyles.font22W}>{item?.post}</Text>
           <Text style={commonStyles.font12W}>
-            by <Text style={commonStyles.fontBold}>Michelangelo</Text>
+            by <Text style={commonStyles.fontBold}>{item?.username}</Text>
           </Text>
           <View style={[commonStyles.flexRow, commonStyles.center]}>
             <FastImage
@@ -33,7 +33,7 @@ const PostDetails = ({extraStyle, OnClickTitle}) => {
               resizeMode={FastImage.resizeMode.contain}
               style={commonStyles.Image6}
             />
-            <Text style={commonStyles.font12W}>Private Collection</Text>
+            <Text style={commonStyles.font12W}>{item?.postLocation}</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -43,7 +43,7 @@ const PostDetails = ({extraStyle, OnClickTitle}) => {
             style={commonStyles.Image30}
           />
           <Text style={[commonStyles.font12W, commonStyles.textCenter]}>
-            952
+          {item?.followers}
           </Text>
         </TouchableOpacity>
       </View>

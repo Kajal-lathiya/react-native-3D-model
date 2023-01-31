@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   bottomMenu: {
     flexDirection: 'row',
     paddingVertical: 7,
-    left: 252 / 6,
+    left: 252 / 4.5,
     width: 252,
     position: 'absolute',
     bottom: 25,
