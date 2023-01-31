@@ -4,7 +4,7 @@ import FastImage from 'react-native-fast-image';
 import {icons} from '../constants';
 import commonStyles from '../screens/commonStyles';
 
-const AudioGuide = ({extraStyle}) => {
+const AudioGuide = ({extraStyle, playAudio}) => {
   return (
     <View
       style={[
@@ -17,11 +17,13 @@ const AudioGuide = ({extraStyle}) => {
           resizeMode={FastImage.resizeMode.contain}
           style={commonStyles.Image25}
         />
+        <TouchableOpacity onPress={playAudio}>
         <FastImage
           source={icons.playCircle}
           resizeMode={FastImage.resizeMode.contain}
           style={commonStyles.Image30}
-        />
+          />
+        </TouchableOpacity>
         <FastImage
           source={icons.forward}
           resizeMode={FastImage.resizeMode.contain}

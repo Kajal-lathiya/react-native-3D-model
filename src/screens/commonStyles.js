@@ -1,15 +1,14 @@
-import {StyleSheet, StatusBar, Dimensions} from 'react-native';
-import {COLORS, SIZES} from '../constants';
-
-const deviceHeight = Dimensions.get('window').height;
-const deviceWidth = Dimensions.get('window').width;
+import {StyleSheet, StatusBar} from 'react-native';
+import {COLORS} from '../constants';
 
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
     backgroundColor: COLORS.black,
     paddingTop: StatusBar.currentHeight,
-    // paddingHorizontal: 12,
+  },
+  flex1: {
+    flex: 1,
   },
   paddingH12: {paddingHorizontal: 12},
   container: {
